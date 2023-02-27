@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,22 +7,103 @@
 }
 
 :root {
-  --brand100: "hsl(230, 57%, 50%)";
-  --brand200: "hsl(230, 68%, 54%)";
-  --gray100: "hsl(210, 11%, 15%)";
-  --gray200: "hsl(210, 10%, 23%)";
-  --gray300: "hsl(210, 9%, 31%)";
-  --gray400: "hsl(210, 7%, 56%)";
-  --gray500: "hsl(210, 11%, 71%)";
-  --gray600: "hsl(210, 16%, 93%)";
-  --gray700: "hsl(210, 17%, 95%)";
-  --gray800: "hsl(210, 17%, 98%)";
-  --gray900: "hsl(200, 100%, 99%)";
-  --alert100: "hsl(349, 57%, 50%)";
-  --alert200: "hsl(349, 69%, 55%)";
-  --sucess100: "hsl(162, 88%, 26%)";
+  --brand100: hsl(230, 57%, 50%);
+  --brand200: hsl(230, 68%, 54%);
+  --gray100: hsl(210, 11%, 15%);
+  --gray200: hsl(210, 10%, 23%);
+  --gray300: hsl(210, 9%, 31%);
+  --gray400: hsl(210, 7%, 56%);
+  --gray500: hsl(210, 11%, 71%);
+  --gray600: hsl(210, 16%, 93%);
+  --gray700: hsl(210, 17%, 95%);
+  --gray800: hsl(210, 17%, 98%);
+  --gray900: hsl(200, 100%, 99%);
+  --alert100: hsl(349, 57%, 50%);
+  --alert200: hsl(349, 69%, 55%);
+  --sucess100: hsl(162, 88%, 26%);
 }
 
 body {
-  font-family: "Inter, sans-serif";
+  font-family: 'IBM Plex Sans', sans-serif;
+
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 150%;
+  color: var(--gray100);
+}
+
+h2, .span--blue {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 150%;
+  color: var(--brand200);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--gray100);
+  line-height: 150%;
+  font-weight: 500;
+}
+
+label {
+  font-size: 1.1rem;
+  color: var(--gray100);
+  line-height: 150%;
+  font-weight: 400;
+}
+
+p, .text--regular {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--gray300)
+}
+
+button {
+  padding: 0 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--gray900);
+  color: var(--gray100);
+  border: 1px solid var(--gray300);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.button--blue {
+  background-color: var(--brand100);
+  color: var(--gray900);
+}
+
+.button-post {
+  border-style: none;
+  color: var(--brand100);
+}
+
+input {
+  padding: 0.5rem 0.5rem;
+  border-radius: 4px;
+  background-color: var(--gray800);
+  border: 1px solid var(--gray800);
+  line-height: 150%;
+  text-align: start;
+}
+
+input::placeholder {
+  color: var(--gray400);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 150%;
+}
+
+input:focus {
+  background-color: var(--gray900);
+  color: var(--gray200);
+  border: 1px solid var(--gray100);
 }
