@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://127.0.0.1:5500/?email=kjhdkfjhskl&password=kdjfhsldkfjh -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Petinfo_files/reset.css">
+    <link rel="stylesheet" href="./Petinfo_files/globalStyles.css">
+    <link rel="stylesheet" href="./Petinfo_files/index.css">
+    <title>Petinfo</title>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1098.0" data-gr-ext-installed="">
+    <main>
+        <div class="main__container--left">
+           
+            <h1>Petinfo</h1>
+
+            <h1><span class="span--blue">Amor</span> e <span class="span--blue">carinho</span> por meio do conhecimento</h1>
+
+            <p>Todas as informações para melhorar a vida do seu pet em um só lugar</p>
+
+            <div class="petimages__container"></div>
+
+        </div>
+        
+        <div class="main__container--right">
+            <form>
+                <h3>Login</h3>
+
+                <div class="input__box">
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="digite seu email aqui" name="email" class="input-login" id="login-email">
+                </div>
+
+                <div class="input__box">
+                    <label for="password">Senha</label>
+                    <input type="text" placeholder="digite sua senha aqui" name="password" class="input-login" id="login-password">
+                </div>
+
+                <button type="submit" class="button--blue" id="button-login">Acessar</button>
+
+
+                <span class="text--bold">Ainda não possui conta?</span>
+                <span class="text--regular">Clicando no botão abaixo, você pode se cadastrar rapidamente</span>
+
+                <button type="button" id="button-signup-redirect">Cadastrar</button>
+
+            </form>
+
+        </div>
+
+
+
+
+
+    </main>
+
+
+
+
+    <script type="module" src="./Petinfo_files/index.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

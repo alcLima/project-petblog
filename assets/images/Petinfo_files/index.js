@@ -17,35 +17,32 @@ function handleLogin(){
 
     const loginBody = {};
     let count = 0;
-
+    console.log(loginFields)
 
     loginButton.addEventListener("click", async (buttonEvent) => {
         
         buttonEvent.preventDefault();
-        
-        loginFields.forEach((input) => {
-            if(input.value == ""){
+
+        loginFields.forEach(( {name, value}) => {
+            console.log(input)
+            if(value == ""){
                 count++
             }
             
-            loginBody[input.name] = input.value
-            
+            // loginBody[input.name] = input.value
+            loginBody[name] = value; 
         })
-        
-        console.log(loginBody)
-        
+
         if(count !== 0){
             return alert("por favor, preencha todos os campos");
         } else {
             const userToken = await loginRequest(loginBody);
             console.log(userToken);
-            loginFields.forEach((input) => {
-                input.value = "";
-            });
             return(userToken);
         }
+
     })
-    
+    console.log(loginBody)
 }
 
 handleLogin();
