@@ -1,41 +1,112 @@
+function getUserIdStorage(){
+    const userIdLocalStorage = localStorage.getItem("@petinfo:userId");
+    return userIdLocalStorage;
+}
+
+
+
 export function renderAllPosts(allPosts){
     
-    postList = document.querySelector(".post-list");
+    const postList = document.querySelector(".post-list");
     postList.innerHtml = "";
 
     allPosts.forEach(post => {
        
-        addedPost = createPosts(post);
+        const addedPost = createPost(post);
+
         postList.appendChild(addedPost);
 
     });
 
 }
 
-function createPosts({ id, user, createdAt, title, content}){
+function createPost({ id, user, createdAt, title, content}){
+    
     const post = document.createElement("li");
 
-    let date = new Date(createdAt).toLocaleDateString;
-    console.log(date)
+    let date = new Date(createdAt)
+    const formatedDate = formatDate(date);
 
-    post.insertAdjacentHTML = ("afterbegin", `
+    const editButton = createEditButton(user.id, id);
+    const deleteButton = createDeleteButton(user.id, id);
+    
+    post.insertAdjacentHTML("afterbegin", `
         <div class="post-header">
 
             <div class="usercard" data-userId="${user.id}">
                 <img src="${user.avatar}" alt="foto de usuário de ${user.username}"/>
                 <span class="text--regular">username</span>
             </div>
-            <span class="text-soft">|  ${date}</span>
-        
+            
+            <span class="text-soft"> |  ${formatedDate}</span>
+            ${editButton}
+            ${deleteButton}
         </div>
 
         <article>
+            
             <h3>${title}</h3>
-            <p>${content}</p>
+            <p>${content.substring(0,145)}...</p>
 
-            <button class="button-post" id="${id}">Acessar publicação</button>
+            <button class="button-post open-post" data-postID="${id}">Acessar publicação</button>
         </article>
     `)
+
+    return post
+}
+
+function formatDate(date){
+
+    const months = {
+        1: "Janeiro",
+        2: "Fevereiro",
+        3: "Março",
+        4: "Abril",
+        5: "Maio",
+        6: "Junho",
+        7: "Julho",
+        8: "Agosto",
+        9: "Setembro",
+        10: "Outurbro",
+        11: "Novembro",
+        12: "Dezembro",
+    }
+    
+    const monthNumber = date.getMonth();
+    const formatedMonth = months[monthNumber];
+
+    const formatedYear = date.getFullYear();
+
+    const formatedDate = `${formatedMonth} de ${formatedYear}`
+
+    return formatedDate;
+}
+
+
+
+function createEditButton(postAuthorId, postId) {
+    const currentUserId = getUserIdStorage();
+
+    if(postAuthorId === currentUserId){
+        
+        return `<button id="edit-${postId}" class="button-post button-delete">Editar</button>`
+        
+    } else {
+        return '';
+    }
+}
+
+function createDeleteButton(postAuthorId, postId){
+    
+    const currentUserId = getUserIdStorage();
+
+    if(postAuthorId === currentUserId){
+        
+        return `<button id="delete-${postId}" class="button-post button-delete">Deletar</button>`
+        
+    } else {
+        return '';
+    }
 }
 
 

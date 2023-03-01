@@ -1,5 +1,5 @@
 
-import { loginRequest } from "./requests.js";
+import { loginRequest, getUserId } from "./requests.js";
 
 function handleLogin(){
     const loginFields = document.querySelectorAll(".input-login");
@@ -28,20 +28,23 @@ function handleLogin(){
             return alert("por favor, preencha todos os campos");
         } else {
             const userToken = await loginRequest(loginBody);
-            console.log(userToken);
+
             loginFields.forEach((input) => {
                 input.value = "";
             });
         
             localStorage.setItem("@petinfo:token", userToken);
+            const userId = await getUserId();
+            localStorage.setItem("@petinfo:userId", userId);
             window.location = "/src/pages/dashboard.html";
-            // return(userToken);
+            return(userToken);
         }
     })
     
 }
 
 handleLogin();
+
 
 function handleRedirectToSignUp() {
     

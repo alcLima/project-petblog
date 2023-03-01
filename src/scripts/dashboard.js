@@ -1,23 +1,22 @@
 import { requestAllPosts } from "./requests.js";
+import { renderAllPosts } from "./render.js";
 
-// function checkAuthentication(){
-//     const token = localStorage.getItem("@petinfo: token");
+function checkAuthentication(){
+    const token = localStorage.getItem("@petinfo:token");
 
-//     if(!token){
-//         window.location = "../../index.html";
-//     }
-// }
+    if(!token){
+        window.location = "../../index.html";
+    }
+}
 
-// checkAuthentication();
+checkAuthentication();
 
 async function loadDashboard(){
     
-    const postList = await requestAllPosts();
-    console.log(postList)
-    // renderAllPosts(postList);
+    const allPosts = await requestAllPosts();
+    console.log(allPosts);
+    renderAllPosts(allPosts);
 
 }
 
 loadDashboard()
-
-requestAllPosts();
