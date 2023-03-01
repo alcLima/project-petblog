@@ -49,3 +49,14 @@ function handleLogin(){
 }
 
 handleLogin();
+
+function handleRedirectToSignUp() {
+    
+    const redirectButton = document.querySelector("#button-signup-redirect");
+
+    redirectButton.addEventListener("click", () => {
+        window.location = "./src/pages/cadastro.html";
+    })
+}
+
+handleRedirectToSignUp();

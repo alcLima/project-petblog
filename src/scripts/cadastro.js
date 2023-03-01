@@ -34,6 +34,16 @@ function handleCreate(){
     return signupResponse
 }
 
+function handleRedirectToLogin() {
+    
+    const redirectButton = document.querySelector("#redirect-login");
 
-await createUserRequest(Aang);
+    redirectButton.addEventListener("click", () => {
+        window.location = "../../index.html";
+    })
+}
+
+handleRedirectToLogin()
+
+
 
