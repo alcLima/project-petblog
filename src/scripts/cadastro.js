@@ -1,6 +1,6 @@
 import { createUserRequest } from "./requests.js";
 
-function handleCreate(){
+function handleCreateUser(){
     const signupFields = document.querySelectorAll(".input-signup");
 
     const signupButton = document.querySelector("#signup-button");
@@ -33,6 +33,8 @@ function handleCreate(){
     })
     return signupResponse
 }
+
+handleCreateUser();
 
 function handleRedirectToLogin() {
     

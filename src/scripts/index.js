@@ -1,16 +1,6 @@
 
 import { loginRequest } from "./requests.js";
 
-let loginAna = {
-    email: "maz@mail.com",
-    password: "string"
-}
-
-
-await loginRequest(loginAna)
-
-
-
 function handleLogin(){
     const loginFields = document.querySelectorAll(".input-login");
     const loginButton = document.querySelector("#button-login");
@@ -42,7 +32,10 @@ function handleLogin(){
             loginFields.forEach((input) => {
                 input.value = "";
             });
-            return(userToken);
+        
+            localStorage.setItem("@petinfo:token", userToken);
+            window.location = "/src/pages/dashboard.html";
+            // return(userToken);
         }
     })
     

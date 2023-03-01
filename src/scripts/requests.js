@@ -1,6 +1,5 @@
 const baseUrl = "http://localhost:3333";
-
-const tokenLocalStorage = localStorage.getItem("@petinfo: token");
+const tokenLocalStorage = localStorage.getItem("@petinfo:token");
 
 export async function loginRequest(loginBody) {
     
@@ -16,7 +15,7 @@ export async function loginRequest(loginBody) {
         const responseToken = await response.json()
         localStorage.setItem("@petinfo:token", JSON.stringify(responseToken.token));
         return responseToken.token;
-            
+        
     } else {
         alert("senha ou usuário inválidos");
     }
@@ -45,3 +44,15 @@ export async function createUserRequest(signupBody){
     return signup
 }
 
+export async function requestAllPosts(){
+    
+    const posts = await fetch (`${baseUrl}/posts`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${tokenLocalStorage}`
+        }
+    })
+    const postList = await posts.json();
+    return(postList);
+}

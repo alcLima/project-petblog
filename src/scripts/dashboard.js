@@ -1,7 +1,23 @@
-function checkAuthentication(){
-    const token = localStorage.getItem("@petinfo: token");
+import { requestAllPosts } from "./requests.js";
 
-    if(!token){
-        window.location = "../../index.html";
-    }
+// function checkAuthentication(){
+//     const token = localStorage.getItem("@petinfo: token");
+
+//     if(!token){
+//         window.location = "../../index.html";
+//     }
+// }
+
+// checkAuthentication();
+
+async function loadDashboard(){
+    
+    const postList = await requestAllPosts();
+    console.log(postList)
+    // renderAllPosts(postList);
+
 }
+
+loadDashboard()
+
+requestAllPosts();
