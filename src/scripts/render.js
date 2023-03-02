@@ -1,6 +1,19 @@
+import { getUserProfile } from "./requests.js";
+
 function getUserIdStorage(){
     const userIdLocalStorage = localStorage.getItem("@petinfo:userId");
     return userIdLocalStorage;
+}
+
+export async function renderUserProfileImage(){
+
+    let userAvatarElement = document.querySelector("#header-avatar");
+    console.log(userAvatarElement);
+    const currentUserProfile = await getUserProfile();
+    console.log(currentUserProfile);
+    userAvatarElement.src = currentUserProfile.avatar;
+
+    return(userAvatarElement)
 }
 
 
@@ -31,16 +44,21 @@ function createPost({ id, user, createdAt, title, content}){
     const deleteButton = createDeleteButton(user.id, id);
     
     post.insertAdjacentHTML("afterbegin", `
-        <div class="post-header">
-
-            <div class="usercard" data-userId="${user.id}">
-                <img src="${user.avatar}" alt="foto de usuário de ${user.username}"/>
-                <span class="text--regular">username</span>
-            </div>
+        <div class="post-header__container">
             
-            <span class="text-soft"> |  ${formatedDate}</span>
-            ${editButton}
-            ${deleteButton}
+            <div class="post-info__container">
+                <div class="usercard" data-userId="${user.id}">
+                <img src="${user.avatar}" alt="foto de usuário de ${user.username}"/>
+                <span class="text--regular">${user.username}</span>
+            </div>
+
+        <span class="text-soft"> |  ${formatedDate}</span>
+            </div>
+            <div class="edit-buttons__container">
+                ${editButton}
+                ${deleteButton}
+            </div>
+
         </div>
 
         <article>

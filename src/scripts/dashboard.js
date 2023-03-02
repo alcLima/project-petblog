@@ -1,5 +1,5 @@
 import { requestAllPosts } from "./requests.js";
-import { renderAllPosts } from "./render.js";
+import { renderAllPosts, renderUserProfileImage } from "./render.js";
 
 function checkAuthentication(){
     const token = localStorage.getItem("@petinfo:token");
@@ -12,11 +12,22 @@ function checkAuthentication(){
 checkAuthentication();
 
 async function loadDashboard(){
-    
-    const allPosts = await requestAllPosts();
-    console.log(allPosts);
-    renderAllPosts(allPosts);
 
+    renderUserProfileImage();
+    const allPosts = await requestAllPosts();
+    renderAllPosts(allPosts);
+    
 }
 
 loadDashboard()
+
+function handleLogoutButton(){
+    const logoutButton = document.querySelector("#logout-button");
+    
+    logoutButton.addEventListener("click", () => {
+        localStorage.clear();
+        window.location = "../../index.html"
+    })
+}
+
+handleLogoutButton();

@@ -9,10 +9,10 @@ header {
 
 .header__container {
     height: 100%;
-    width: 70%;
+    width: 50%;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -22,19 +22,55 @@ img {
     height: 41px;
 }
 
-.feed-divider {
+.divider__container{
     height: 40px;
     width: 100%;
-    color: var(--gray600);
+    background-color: var(--gray600);
+    display: flex;
+    align-items: center;
+}
+
+.feed-divider {
+    display: block;
+  
+    margin: 0 auto;
+    width: 50%;
+    color: var(--gray300);
     font-size: 1.25rem;
     font-weight: 400;
 }
 
-.post-list {
-    display: flex;
-    justify-content: space-around;
+main {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 3.2rem;
 }
 
-.post-header {
+.post-list {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+li {
+    margin-bottom: 3.1rem;
+}
+
+.post-header__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-info__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+}
+
+article {
+    margin-top: 1.5rem;
+}
+
+
+

@@ -26,7 +26,7 @@ export async function loginRequest(loginBody) {
     }
 }
 
-export async function getUserId() {
+export async function getUserProfile() {
     const token = getTokenStorage();
     const userDataJson = await fetch (`${baseUrl}/users/profile`, {
         method: "GET",
@@ -35,10 +35,9 @@ export async function getUserId() {
             "Authorization": `Bearer ${token}`
         },
     })
-    const userData = await userDataJson.json();
-    const userId = userData.id
+    const userProfile = await userDataJson.json();
     
-    return userId
+    return(userProfile);
 
 }
 

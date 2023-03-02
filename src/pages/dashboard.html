@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/globalStyles.css">
     <link rel="stylesheet" href="../styles/dashboard.css">
     <title>Petinfo: Dashboard</title>
 </head>
@@ -16,12 +16,15 @@
 
             <div class="header__profile">
                 <button class="button--blue">Criar publicação</button>
-                <img src="" alt=""/>
+                <img id="header-avatar" src="" alt=""/>
+                <button id="logout-button">Sair</button>
             </div>
         </div>
     </header>
     
-    <span class="feed-divider">Feed</span>
+    <div class="divider__container">
+        <span class="feed-divider">Feed</span>
+    </div>
 
     <main>
         <ul class="post-list">

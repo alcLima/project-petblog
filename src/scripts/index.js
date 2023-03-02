@@ -1,5 +1,5 @@
 
-import { loginRequest, getUserId } from "./requests.js";
+import { loginRequest, getUserProfile } from "./requests.js";
 
 function handleLogin(){
     const loginFields = document.querySelectorAll(".input-login");
@@ -34,7 +34,8 @@ function handleLogin(){
             });
         
             localStorage.setItem("@petinfo:token", userToken);
-            const userId = await getUserId();
+            const userProfile = await getUserProfile();
+            const userId = userProfile.id;
             localStorage.setItem("@petinfo:userId", userId);
             window.location = "/src/pages/dashboard.html";
             return(userToken);
