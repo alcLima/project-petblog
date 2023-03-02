@@ -74,5 +74,32 @@ export async function requestAllPosts(){
         }
     })
     const postList = await posts.json();
+
     return(postList);
 }
+
+// export async function requestDeletePost(postId){
+    
+//     const postDeleted = await fetch (`${baseUrl}/posts/${postId}` , {
+//         method: "DELETE",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Authorization": `Bearer ${token}`
+//         }
+//     }).then((responseJSON) => {
+//         if(responseJSON.ok){
+//             console.log(responseJSON);
+//             const response = responseJSON.json().then((response) => {
+//                 console.log(response)
+//                 alert("post deletado com sucesso");
+//                 return true
+//             })
+            
+//         } else {
+//             console.log(responseJSON)
+//             alert ("post não deletado")
+//             return false
+//         }
+//     })
+// }
+

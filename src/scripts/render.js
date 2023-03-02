@@ -1,4 +1,4 @@
-import { getUserProfile } from "./requests.js";
+import { getUserProfile, requestAllPosts } from "./requests.js";
 
 function getUserIdStorage(){
     const userIdLocalStorage = localStorage.getItem("@petinfo:userId");
@@ -8,9 +8,9 @@ function getUserIdStorage(){
 export async function renderUserProfileImage(){
 
     let userAvatarElement = document.querySelector("#header-avatar");
-    console.log(userAvatarElement);
+
     const currentUserProfile = await getUserProfile();
-    console.log(currentUserProfile);
+
     userAvatarElement.src = currentUserProfile.avatar;
 
     return(userAvatarElement)
@@ -47,7 +47,7 @@ function createPost({ id, user, createdAt, title, content}){
         <div class="post-header__container">
             
             <div class="post-info__container">
-                <div class="usercard" data-userId="${user.id}">
+                <div class="usercard" data-user-id="${user.id}">
                 <img src="${user.avatar}" alt="foto de usuário de ${user.username}"/>
                 <span class="text--regular">${user.username}</span>
             </div>
@@ -66,7 +66,7 @@ function createPost({ id, user, createdAt, title, content}){
             <h3>${title}</h3>
             <p>${content.substring(0,145)}...</p>
 
-            <button class="button-post open-post" data-postID="${id}">Acessar publicação</button>
+            <button class="button-post open-button" data-post-id="${id}">Acessar publicação</button>
         </article>
     `)
 
@@ -107,7 +107,7 @@ function createEditButton(postAuthorId, postId) {
 
     if(postAuthorId === currentUserId){
         
-        return `<button id="edit-${postId}" class="button-post button-delete">Editar</button>`
+        return `<button data-post-id="${postId}" class="button-post button-delete">Editar</button>`
         
     } else {
         return '';
@@ -126,6 +126,93 @@ function createDeleteButton(postAuthorId, postId){
         return '';
     }
 }
+
+export async function renderSelectedPost(postId) {
+    
+    const modalShell = document.querySelector(".open-post__container");
+    modalShell.innerHTML = "";
+    
+    const selectedPost = await findPost(postId)
+
+    const postContent = createInnerContent(selectedPost);
+    modalShell.innerHTML = postContent;
+
+    return postContent
+
+}
+
+async function findPost(postId){
+    
+    const allPosts = await requestAllPosts();
+
+    const selectedPost = allPosts.find(post => post.id === postId);
+    
+    return selectedPost;
+
+}
+
+function createInnerContent({ user, createdAt, title, content }){
+
+    let date = new Date(createdAt);
+    const formatedDate = formatDate(date);
+    
+    const postContent = `
+        <div class="post__inner-container">
+            <div class="post-header__container">
+
+                <div class="post-info__container">
+                    <div class="usercard" data-user-id="${user.id}">
+                    <img src="${user.avatar}" alt="foto de usuário de ${user.username}"/>
+                    <span class="text--regular">${user.username}</span>
+                </div>
+
+                <span class="text-soft"> |  ${formatedDate}</span>
+                </div>
+            <button class="button__close-post">X</button>
+            </div>
+
+        <article>
+
+            <h3>${title}</h3>
+            <p>${content}...</p>
+
+        </article>
+        </div>
+`
+        
+    return postContent;
+}
+
+
+
+
+//___________________________________________________________________________________________________
+
+// function createModal(array, id){
+//     //tem que retornar a variável com html dentro
+//     let selectedPost = array.find(post => post.id == id);
+  
+//     const modalContent = `
+//       <div class="modal__inner-container">
+        
+//         <div class="user-profile-card">
+//           <img src="${selectedPost.img}" class="user__img" alt="user-profile-picture"/>
+//           <div class="user-intro">
+//             <h3>${selectedPost.user}</h3>
+//             <span class="user-about">${selectedPost.stack}</span>
+//           </div>
+//         </div> 
+  
+//         <h2 class="post-title">${selectedPost.title}</h2>
+//         <p class="post-content">${selectedPost.text}</p>
+        
+//         <button class="button--white" id="button-close">x</button>
+//       </div>  `
+  
+//     return modalContent
+  
+//   }
+  
 
 
 
