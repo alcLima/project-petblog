@@ -36,6 +36,7 @@
         
         <dialog class="create-post__container">
             <form>
+                <h4>Criando novo post</h4>
                 <div class="input__box">
                     <label for="title">Título do post</label>
                     <input type="text" placeholder="digite o título aqui..." name="title" class="input-create" id="create-title" required />
@@ -43,15 +44,16 @@
                 
                 <div class="input__box">
                     <label for="content">Conteúdo do post</label>
-                    <textarea name="content" required id="create-content" class="input-create" placeholder="desenvolva o conteúdo do post aqui..."></textarea>
+                    <textarea name="content" required id="create-content" class="input-create" placeholder="desenvolva o conteúdo do post aqui..." rows="15"></textarea>
                 </div>
 
-                <button type="button" class="button--blue" id="button-cancel-create">Cancelar</button>
+                <button type="button" id="button-cancel-create">Cancelar</button>
                 <button type="submit" class="button--blue" id="publish-button">Publicar</button>
             </form>
         </dialog>
 
         <dialog class="update-post__container">
+            <h4>Edição</h4>
             <form>
                 <input id="update-id" name="id" type="hidden" />
                 <div class="input__box">
@@ -64,7 +66,7 @@
                     <textarea name="content" required id="update-content" class="input-update" placeholder="desenvolva o conteúdo do post aqui..."></textarea>
                 </div>
 
-                <button type="button" class="button--blue" id="button-cancel-update">Cancelar</button>
+                <button type="button" id="button-cancel-update">Cancelar</button>
                 <button type="submit" class="button--blue" id="update-button">Publicar</button>
             </form>
         </dialog>

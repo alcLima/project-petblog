@@ -140,3 +140,21 @@ dialog {
     right: 10px;
     top: 10px;
 }
+
+.input__box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.rem;
+    padding: 2rem 0;
+}
+
+.input__box > label {
+    margin-bottom: 1rem;
+}
+
+.create-post__container, .update-post__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.3rem 1.3rem;
+    gap: 1.5rem;
+}
