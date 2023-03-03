@@ -16,6 +16,18 @@ header {
     align-items: center;
 }
 
+.header__profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-buttons__container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
 img {
     border-radius: 50%;
     width: 41px;
@@ -59,17 +71,32 @@ li {
 .post-header__container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .post-info__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 30%;
+    gap: 1.5rem;
+}
+
+.usercard {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
 }
 
 article {
     margin-top: 1.5rem;
+}
+
+article > h3 {
+    margin-bottom: 1rem;
+}
+
+article > p {
+    margin-bottom: 1rem;
 }
 
 dialog {

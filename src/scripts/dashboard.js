@@ -1,5 +1,5 @@
-import { requestAllPosts, requestDeletePost, createPostRequest } from "./requests.js";
-import { renderAllPosts, renderUserProfileImage, renderSelectedPost } from "./render.js";
+import { requestAllPosts, requestDeletePost, createPostRequest, updatePostRequest } from "./requests.js";
+import { renderAllPosts, renderUserProfileImage, renderSelectedPost, findPost } from "./render.js";
 
 function checkAuthentication(){
     const token = localStorage.getItem("@petinfo:token");
@@ -15,6 +15,7 @@ async function loadDashboard(){
     renderUserProfileImage();
     handleCreatePost();
     handleCreatePostForm();
+    handleEditPostForm();
     renderMain();
 }
 
@@ -26,6 +27,7 @@ async function renderMain() {
     renderAllPosts(allPosts);
     handleOpenPost();
     handleDeletePost();
+    handleEditPost();
 }
 
 function handleLogoutButton(){
@@ -74,7 +76,7 @@ function handleClosePostButton(){
 function handleCreatePost(){
 
     const createButton = document.querySelector("#create-button");
-    const cancelButton = document.querySelector("#cancel-button");
+    const cancelButton = document.querySelector("#button-cancel-create");
     const postShell = document.querySelector(".create-post__container")
     createButton.addEventListener("click", async (e) => {
 
@@ -147,6 +149,75 @@ async function handleDeletePost(){
     })
 
 }
+
+async function handleEditPost(){
+    const editButtons = document.querySelectorAll(".button-edit");
+    const cancelButton = document.querySelector("#button-cancel-update");
+
+    cancelButton.addEventListener("click", () => {
+        const postShell = document.querySelector(".update-post__container");
+      postShell.close();  
+    })
+    
+    editButtons.forEach(button => 
+        button.addEventListener("click", async (e) => {
+            const postShell = document.querySelector(".update-post__container");
+            const titleField = document.querySelector("#update-title");
+            const contentField = document.querySelector("#update-content");
+            const idField = document.querySelector("#update-id");
+
+            let postId = button.dataset.postId;
+            const post = await findPost(postId);
+            titleField.value = post.title;
+            contentField.value = post.content;
+            idField.value = postId;
+            postShell.showModal();
+        })
+    ) 
+}
+
+handleEditPost()
+
+async function handleEditPostForm() {
+    const updateFields = document.querySelectorAll(".input-update");
+    const submitButton = document.querySelector("#update-button");
+    const postShell = document.querySelector(".update-post__container");
+    const updateBody = {};
+    
+    submitButton.addEventListener("click", async (buttonEvent) => {
+        let count = 0;
+        buttonEvent.preventDefault();
+
+        const idField = document.querySelector("#update-id");
+        
+        updateFields.forEach((input) => {
+            if(input.value == ""){
+                count++
+            }
+            
+            updateBody[input.name] = input.value
+        })
+        
+        if(count !== 0){
+            return alert("por favor, preencha todos os campos");
+        } else {
+            
+            const response = await updatePostRequest(idField.value, updateBody);
+            if (response) {
+                updateFields.forEach((input) => {
+                    input.value = "";
+                });
+
+                postShell.close();
+
+                renderMain();
+            } else {
+                alert('Erro no servidor, tente novamente')
+            }
+        }
+    })
+}
+
 
 function showSuccessModal(){
     const succesShell = document.querySelector(".success-alert__modal");

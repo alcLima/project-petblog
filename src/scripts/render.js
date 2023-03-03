@@ -50,11 +50,11 @@ function createPost({ id, user, createdAt, title, content}){
             
             <div class="post-info__container">
                 <div class="usercard" data-user-id="${user.id}">
-                <img src="${user.avatar}" alt="foto de usuário de ${user.username}"/>
-                <span class="text--regular">${user.username}</span>
+                    <img src="${user.avatar}" alt="foto de usuário de ${user.username}"/>
+                    <span class="text--regular">${user.username}</span>
             </div>
 
-        <span class="text-soft"> |  ${formatedDate}</span>
+        <span class="text--soft"> |  ${formatedDate}</span>
             </div>
             <div class="edit-buttons__container">
                 ${editButton}
@@ -109,7 +109,7 @@ function createEditButton(postAuthorId, postId) {
 
     if(postAuthorId === currentUserId){
         
-        return `<button data-post-id="${postId}" class="button-post button-edit">Editar</button>`
+        return `<button data-post-id="${postId}" class="button-grey button-edit">Editar</button>`
         
     } else {
         return '';
@@ -122,7 +122,7 @@ function createDeleteButton(postAuthorId, postId){
 
     if(postAuthorId === currentUserId){
         
-        return `<button data-post-id="${postId}" class="button-post button-delete">Deletar</button>`
+        return `<button data-post-id="${postId}" class="button-delete">Deletar</button>`
         
     } else {
         return '';
@@ -143,7 +143,7 @@ export async function renderSelectedPost(postId) {
 
 }
 
-async function findPost(postId){
+export async function findPost(postId){
     
     const allPosts = await requestAllPosts();
 
@@ -185,50 +185,31 @@ function createInnerContent({ user, createdAt, title, content }){
     return postContent;
 }
 
+// export async function renderSelectedPost(postId) {
+    
+   
+//     const submitButton = document.querySelector("#publish-button");
+    
+//     const selectedPost = await findPost(postId);
 
+//     const postFieldsContent = fillEditFields(selectedPost);
 
+//     // editShell.innerHTML = "";
+    
+//     // modalShell.innerHTML = postFieldsContent;
 
-//___________________________________________________________________________________________________
+//     return postFieldsContent
 
-// function createModal(array, id){
-//     //tem que retornar a variável com html dentro
-//     let selectedPost = array.find(post => post.id == id);
-  
-//     const modalContent = `
-//       <div class="modal__inner-container">
-        
-//         <div class="user-profile-card">
-//           <img src="${selectedPost.img}" class="user__img" alt="user-profile-picture"/>
-//           <div class="user-intro">
-//             <h3>${selectedPost.user}</h3>
-//             <span class="user-about">${selectedPost.stack}</span>
-//           </div>
-//         </div> 
-  
-//         <h2 class="post-title">${selectedPost.title}</h2>
-//         <p class="post-content">${selectedPost.text}</p>
-        
-//         <button class="button--white" id="button-close">x</button>
-//       </div>  `
-  
-//     return modalContent
-  
-//   }
-  
-
-
-
-
-
-// const post = {
-// 	"id": "c63571f7-146c-4cf5-8db7-11c091c9d460",
-// 	"title": "About avatar",
-// 	"content": "The world is divided into four nations -- the Water Tribe, the Earth Kingdom, the Fire Nation and and the Air Nomads -- each represented by a natural element for which the nation is named. Benders have the ability to control and manipulate the element from their nation. Only the Avatar is the master…",
-// 	"createdAt": "2023-03-01T18:38:30.960Z",
-// 	"user": {
-// 		"id": "8cce6e00-c8c0-46b3-8bf0-449754591be6",
-// 		"username": "Ana",
-// 		"email": "maz@mail.com",
-// 		"avatar": "https://avatars.githubusercontent.com/u/101673023?s=40&v=4"
-// 	}
 // }
+
+// function fillEditFields({title, content}){
+//      const editShell = document.querySelector(".create-post__container");
+    
+//      return console.log(editShell)
+
+     
+// }
+
+
+
+

@@ -80,6 +80,26 @@ export async function createPostRequest(postBody){
 
 }
 
+export async function updatePostRequest(id, postBody){
+    const token = getTokenStorage()
+    const responseJSON = await fetch (`${baseUrl}/posts/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(postBody),
+    })
+
+    if (responseJSON.ok) {
+        const response = await responseJSON.json()
+        return response;
+    } else {
+        return null;
+    }
+
+}
+
 export async function requestAllPosts(){
     const token = getTokenStorage()
     const posts = await fetch (`${baseUrl}/posts`, {
