@@ -5,12 +5,12 @@ function handleCreateUser(){
 
     const signupButton = document.querySelector("#signup-button");
 
-    signupButton.addEventListener("click",(event) => {
+    signupButton.addEventListener("click", async (event) => {
         event.preventDefault();
 
         let count = 0;
         const signupBody = {};
-        //input keys: { name , value }
+        
         signupFields.forEach(({ name, value }) => {
             if(value == ""){
                 count++
@@ -22,16 +22,24 @@ function handleCreateUser(){
 
         if(count !== 0){
             return alert("por favor, preecha todos os campos")
-            //alterar para toast depois
+           
         } else {
-            signupResponse = createUserRequest(signupBody);
+            const signupResponse = await createUserRequest(signupBody);
 
-            signupFields.forEach((input) => {
-                input.value = "";
-            })
+            if (signupResponse) {
+
+                signupFields.forEach((input) => {
+                    input.value = "";
+                })
+                alert(signupResponse)
+                window.location = "/";
+            } else {
+
+                alert(signupResponse)
             }
+        }
     })
-    return signupResponse
+    
 }
 
 handleCreateUser();

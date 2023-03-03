@@ -72,17 +72,44 @@ article {
     margin-top: 1.5rem;
 }
 
-.dialog {
+dialog {
     width: 50%;
     border-radius: 4px;
     margin: 0 auto;
     position: absolute;
     margin-top: 40px;
     height:fit-content;
+    border: none;
 }
 
 .post__inner-container {
     display: flex;
     flex-direction: column;
     padding: 1.2rem 1.2rem;
+}
+
+.success-alert__modal {
+    position: fixed;
+    top: 75%;
+    left: 75%;
+    width: 440px;
+    height: 125px;
+}
+
+.success-modal__inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.2rem 1.2rem;
+
+}
+
+.success-modal__inner-container > h3 {
+    color: var(--sucess100);
+}
+
+.success-modal__inner-container > button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }

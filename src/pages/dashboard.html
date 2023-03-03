@@ -15,7 +15,7 @@
             <h3>Petinfo</h3>
 
             <div class="header__profile">
-                <button class="button--blue">Criar publicação</button>
+                <button id="create-button" class="button--blue">Criar publicação</button>
                 <img id="header-avatar" src="" alt=""/>
                 <button id="logout-button">Sair</button>
             </div>
@@ -32,13 +32,33 @@
         </ul>
         
         
-        <dialog class="delete-post__container">
+        <dialog class="create-post__container">
+            <form>
+                <div class="input__box">
+                    <label for="title">Título do post</label>
+                    <input type="text" placeholder="digite o título aqui..." name="title" class="input-create" id="create-title" required />
+                </div>
+                
+                <div class="input__box">
+                    <label for="content">Conteúdo do post</label>
+                    <textarea name="content" required id="create-content" class="input-create" placeholder="desenvolva o conteúdo do post aqui..."></textarea>
+                </div>
 
+                <button type="button" class="button--blue" id="cancel-button">Cancelar</button>
+                <button type="submit" class="button--blue" id="publish-button">Publicar</button>
+            </form>
+        </dialog>
+        <dialog class="success-alert__modal">
+            <div class="success-modal__inner-container">
+                <button class="button__close-success">x</button>
+                <h3>Post deletado com sucesso!</h3>
+                <p>O post selecionado para exlusão foi deletado, a partir de agora não aparecerá no seu feed</p>
+            </div>
         </dialog>
 
         
         <dialog class="open-post__container">
-
+            
         </dialog>
 
     </main>

@@ -42,26 +42,42 @@ export async function getUserProfile() {
 }
 
 export async function createUserRequest(signupBody){
-    const signup = await fetch (`${baseUrl}/users/create`, {
+    const responseJSON = await fetch(`${baseUrl}/users/create`, {
         method: "POST",
         headers: {
             "content-Type" : "application/json"
         },
         body: JSON.stringify(signupBody),
-    }).then((responseJSON) => {
-        if(responseJSON.ok){
-            console.log(responseJSON);
-            const response = responseJSON.json().then((response) => {
-                console.log(response)
-                alert("cadastro realizado com sucesso, faça login");
-            })
-            return response
-            
-        } else {
-            alert ("Cadastro não realizado, por favor tente novamente.")
-        }
     })
-    return signup
+   
+    if (responseJSON.ok) {
+
+        await responseJSON.json();
+        return "cadastro realizado com sucesso, faça login";
+    } else {
+        return "Cadastro não realizado, por favor tente novamente."
+    }
+
+}
+
+export async function createPostRequest(postBody){
+    const token = getTokenStorage()
+    const responseJSON = await fetch (`${baseUrl}/posts/create`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(postBody),
+    })
+
+    if (responseJSON.ok) {
+        const response = await responseJSON.json()
+        return response;
+    } else {
+        return null;
+    }
+
 }
 
 export async function requestAllPosts(){
@@ -78,28 +94,22 @@ export async function requestAllPosts(){
     return(postList);
 }
 
-// export async function requestDeletePost(postId){
-    
-//     const postDeleted = await fetch (`${baseUrl}/posts/${postId}` , {
-//         method: "DELETE",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Authorization": `Bearer ${token}`
-//         }
-//     }).then((responseJSON) => {
-//         if(responseJSON.ok){
-//             console.log(responseJSON);
-//             const response = responseJSON.json().then((response) => {
-//                 console.log(response)
-//                 alert("post deletado com sucesso");
-//                 return true
-//             })
-            
-//         } else {
-//             console.log(responseJSON)
-//             alert ("post não deletado")
-//             return false
-//         }
-//     })
-// }
+export async function requestDeletePost(postId){
+    const token = getTokenStorage();
+    const responseJSON = await fetch (`${baseUrl}/posts/${postId}` , {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    })
+
+    await responseJSON.json()
+
+    if(responseJSON.ok){
+        return true
+    } else {
+        return false
+    }
+}
 

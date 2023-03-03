@@ -21,7 +21,9 @@ export async function renderUserProfileImage(){
 export function renderAllPosts(allPosts){
     
     const postList = document.querySelector(".post-list");
-    postList.innerHtml = "";
+    while (postList.firstChild) {
+        postList.removeChild(postList.firstChild);
+    }
 
     allPosts.forEach(post => {
        
@@ -107,7 +109,7 @@ function createEditButton(postAuthorId, postId) {
 
     if(postAuthorId === currentUserId){
         
-        return `<button data-post-id="${postId}" class="button-post button-delete">Editar</button>`
+        return `<button data-post-id="${postId}" class="button-post button-edit">Editar</button>`
         
     } else {
         return '';
@@ -120,7 +122,7 @@ function createDeleteButton(postAuthorId, postId){
 
     if(postAuthorId === currentUserId){
         
-        return `<button id="delete-${postId}" class="button-post button-delete">Deletar</button>`
+        return `<button data-post-id="${postId}" class="button-post button-delete">Deletar</button>`
         
     } else {
         return '';

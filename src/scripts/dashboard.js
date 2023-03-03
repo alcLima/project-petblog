@@ -1,4 +1,4 @@
-import { requestAllPosts } from "./requests.js";
+import { requestAllPosts, requestDeletePost, createPostRequest } from "./requests.js";
 import { renderAllPosts, renderUserProfileImage, renderSelectedPost } from "./render.js";
 
 function checkAuthentication(){
@@ -12,15 +12,21 @@ function checkAuthentication(){
 checkAuthentication();
 
 async function loadDashboard(){
-
     renderUserProfileImage();
-    const allPosts = await requestAllPosts();
-    renderAllPosts(allPosts);
-    handleOpenPost()
-    
+    handleCreatePost();
+    handleCreatePostForm();
+    renderMain();
 }
 
 loadDashboard()
+
+
+async function renderMain() {
+    const allPosts = await requestAllPosts();
+    renderAllPosts(allPosts);
+    handleOpenPost();
+    handleDeletePost();
+}
 
 function handleLogoutButton(){
     const logoutButton = document.querySelector("#logout-button");
@@ -52,6 +58,7 @@ function handleOpenPost(){
     return postShell
 }
 
+
 function handleClosePostButton(){
     
     const postShell = document.querySelector(".open-post__container")
@@ -64,25 +71,95 @@ function handleClosePostButton(){
 
 }
 
-// async function handleDeletePost(){
-   
-//     const deleteButtons = document.querySelector(".button-delete");
+function handleCreatePost(){
 
-//     deleteButtons.forEach(button => {
+    const createButton = document.querySelector("#create-button");
+    const cancelButton = document.querySelector("#cancel-button");
+    const postShell = document.querySelector(".create-post__container")
+    createButton.addEventListener("click", async (e) => {
+
+        postShell.showModal();
+    })
+
+    cancelButton.addEventListener("click", () => {
+      postShell.close();  
+    })
+
+    return postShell
+}
+
+function handleCreatePostForm() {
+    const createFields = document.querySelectorAll(".input-create");
+    const submitButton = document.querySelector("#publish-button");
+    const postShell = document.querySelector(".create-post__container")
+    const createBody = {};
+    
+    submitButton.addEventListener("click", async (buttonEvent) => {
+        let count = 0;
+        buttonEvent.preventDefault();
         
-//         button.addEventListener("click", async (e) => {
+        createFields.forEach((input) => {
+            if(input.value == ""){
+                count++
+            }
+            
+            createBody[input.name] = input.value
+        })
+        
+        if(count !== 0){
+            return alert("por favor, preencha todos os campos");
+        } else {
+            
+            const response = await createPostRequest(createBody);
+            if (response) {
+                createFields.forEach((input) => {
+                    input.value = "";
+                });
 
-//             let postId = button.dataset.postId;
-//             const selectedPost = await requestDeletePost(postId);
-//             //make requestdeletepost return true or false
-//             if(selectedPost){
-//                 alert("Sua postagem foi deletada com sucesso")
-//                 //ou: alertar selected post, se ela retornar msg de sucesso
-//             }
-//         })
-//     })
+                postShell.close();
 
-// }
+                renderMain();
+
+            } else {
+                alert('Erro no servidor, tente novamente')
+            }
+        }
+    })
+}
+
+
+
+async function handleDeletePost(){
+   
+    const deleteButtons = document.querySelectorAll(".button-delete");
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", async (e) => {
+            let postId = button.dataset.postId;
+            const response = await requestDeletePost(postId);
+
+            renderMain();
+
+            if(response){
+                showSuccessModal();
+            }
+        })
+    })
+
+}
+
+function showSuccessModal(){
+    const succesShell = document.querySelector(".success-alert__modal");
+    succesShell.showModal();
+    
+    const closeButton = document.querySelector(".button__close-success");
+
+    closeButton.addEventListener("click", () => {
+        succesShell.close();
+    })
+}
+
+
 
 
 

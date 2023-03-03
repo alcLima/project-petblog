@@ -6,10 +6,10 @@ function handleLogin(){
     const loginButton = document.querySelector("#button-login");
 
     const loginBody = {};
-    let count = 0;
-
-
+    
+    
     loginButton.addEventListener("click", async (buttonEvent) => {
+        let count = 0;
         
         buttonEvent.preventDefault();
         
@@ -22,8 +22,6 @@ function handleLogin(){
             
         })
         
-        console.log(loginBody)
-        
         if(count !== 0){
             return alert("por favor, preencha todos os campos");
         } else {
@@ -32,13 +30,15 @@ function handleLogin(){
             loginFields.forEach((input) => {
                 input.value = "";
             });
-        
-            localStorage.setItem("@petinfo:token", userToken);
-            const userProfile = await getUserProfile();
-            const userId = userProfile.id;
-            localStorage.setItem("@petinfo:userId", userId);
-            window.location = "/src/pages/dashboard.html";
-            return(userToken);
+
+            if (userToken) {
+                localStorage.setItem("@petinfo:token", userToken);
+                const userProfile = await getUserProfile();
+                const userId = userProfile.id;
+                localStorage.setItem("@petinfo:userId", userId);
+                window.location = "/src/pages/dashboard.html";
+                return(userToken);
+            }
         }
     })
     
