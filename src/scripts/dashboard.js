@@ -179,6 +179,7 @@ async function handleEditPost(){
 handleEditPost()
 
 async function handleEditPostForm() {
+    
     const updateFields = document.querySelectorAll(".input-update");
     const submitButton = document.querySelector("#update-button");
     const postShell = document.querySelector(".update-post__container");
@@ -212,7 +213,7 @@ async function handleEditPostForm() {
 
                 renderMain();
             } else {
-                alert('Erro no servidor, tente novamente')
+                alert('Aconteceu um erro, por favor tente novamente')
             }
         }
     })

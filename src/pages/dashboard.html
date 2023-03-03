@@ -47,8 +47,8 @@
                     <textarea name="content" required id="create-content" class="input-create" placeholder="desenvolva o conteúdo do post aqui..." rows="15"></textarea>
                 </div>
 
-                <button type="button" id="button-cancel-create">Cancelar</button>
-                <button type="submit" class="button--blue" id="publish-button">Publicar</button>
+                <div><button type="button" id="button-cancel-create">Cancelar</button>
+                    <button type="submit" class="button--blue" id="publish-button">Publicar</button></div>
             </form>
         </dialog>
 
@@ -66,16 +66,18 @@
                     <textarea name="content" required id="update-content" class="input-update" placeholder="desenvolva o conteúdo do post aqui..."></textarea>
                 </div>
 
-                <button type="button" id="button-cancel-update">Cancelar</button>
-                <button type="submit" class="button--blue" id="update-button">Publicar</button>
+                <div><button type="button" id="button-cancel-update">Cancelar</button>
+                    <button type="submit" class="button--blue" id="update-button">Publicar</button></div>
             </form>
         </dialog>
 
         <dialog class="success-alert__modal">
             <div class="success-modal__inner-container">
                 <button class="button__close-success">x</button>
-                <img src="assets/images/check.svg" alt="sinal de concluído">
-                <h3>Post deletado com sucesso!</h3>
+                <div class="success-title__container">
+                    <img src="../../assets/images/check.svg" alt="sinal de concluído">
+                    <h3>Post deletado com sucesso!</h3>
+                </div>
                 <p>O post selecionado para exlusão foi deletado, a partir de agora não aparecerá no seu feed</p>
             </div>
         </dialog>

@@ -141,6 +141,10 @@ dialog {
     top: 10px;
 }
 
+.success-title__container {
+    display: flex;
+}
+
 .input__box {
     display: flex;
     flex-direction: column;
@@ -152,7 +156,7 @@ dialog {
     margin-bottom: 1rem;
 }
 
-.create-post__container, .update-post__container {
+form  {
     display: flex;
     flex-direction: column;
     padding: 1.3rem 1.3rem;
