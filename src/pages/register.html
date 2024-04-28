@@ -1,63 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" href="../styles/globalStyles.css">
-    <link rel="stylesheet" href="../styles/cadastro.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/globalStyles.css" />
+    <link rel="stylesheet" href="../styles/register.css" />
     <title>Petinfo Cadastro</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <main>
+      <div class="main__container">
         <div class="main__container--form">
-            <form>
-                
-                <h3>Cadastro</h3>
-                
-                <div class="input__box">
-                    <label for="username">Usuário</label>
-                    <input type="text" placeholder="digite seu nome de usuário aqui" name="username" class="input-signup" id="signup-username" required/>
-                </div>
-                
-                <div class="input__box">
-                    <label for="email">Email</label>
-                    <input type="text" placeholder="digite seu email aqui" name="email" class="input-signup" id="signup-email" required/>
-                </div>
-                
-                <div class="input__box">
-                    <label for="avatar">Link da foto de perfil</label>
-                    <input type="text" placeholder="insira o link aqui" name="avatar" class="input-signup" id="signup-picture" required/>
-                </div>
-                
-                <div class="input__box">
-                    <label for="password">Senha</label>
-                    <input type="text" placeholder="digite sua senha aqui" name="password" class="input-signup" id="signup-password" required/>
-                </div>
-                
+          <form>
+            <h3>Cadastro</h3>
 
-                <button type="submit" class="button--blue" id="signup-button">Cadastrar</button>
-                <button type="button" id="redirect-login">Voltar para o login</button>
-                
-            </form>
-        
+            <div class="input__box">
+              <label for="username">Usuário</label>
+              <input
+                type="text"
+                placeholder="digite seu nome de usuário aqui"
+                name="username"
+                class="input-signup"
+                id="signup-username"
+                required
+              />
+            </div>
+
+            <div class="input__box">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                placeholder="digite seu email aqui"
+                name="email"
+                class="input-signup"
+                id="signup-email"
+                required
+              />
+            </div>
+
+            <div class="input__box">
+              <label for="avatar">Link da foto de perfil</label>
+              <input
+                type="text"
+                placeholder="insira o link aqui"
+                name="avatar"
+                class="input-signup"
+                id="signup-picture"
+                required
+              />
+            </div>
+
+            <div class="input__box">
+              <label for="password">Senha</label>
+              <input
+                type="text"
+                placeholder="digite sua senha aqui"
+                name="password"
+                class="input-signup"
+                id="signup-password"
+                required
+              />
+            </div>
+
+            <button type="submit" class="button--blue" id="signup-button">
+              Cadastrar
+            </button>
+            <button type="button" id="redirect-login">
+              Voltar para o login
+            </button>
+          </form>
         </div>
 
         <div class="main__container--info">
-            
-            <h1>Petinfo</h1>
+          <h1>Petinfo</h1>
 
-            <h2 class="title--blue">Ooooooba!</h2>
-            <h3>Agora vamos poder contribuir para o bem estar do seu pet por meio do conhecimento</h3>
+          <h2 class="title--blue">Ooooooba!</h2>
+          <h3>
+            Agora vamos poder contribuir para o bem estar do seu pet por meio do
+            conhecimento
+          </h3>
 
-            <img src="../../assets/images/petimages_signup.svg" class="img-pets_ilustrative">
-
+          <img
+            src="../../assets/images/petimages_signup.svg"
+            class="img-pets_ilustrative"
+          />
         </div>
-
+      </div>
     </main>
 
     <script type="module" src="../scripts/cadastro.js"></script>
-</body>
+  </body>
 </html>
